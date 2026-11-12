@@ -1,0 +1,6 @@
+{
+  "routes": [
+    { "path": "/", "title": "Pokapi — Pokédex" },
+    { "path": "/pokapi", "title": "Pokapi — Pokédex" }
+  ]
+}

@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+/* ==========================================================================
+   1. RESET & CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.4);
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --input-bg: rgba(15, 23, 42, 0.6);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --focus-glow: rgba(99, 102, 241, 0.25);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0f172a 70%, #020617 100%);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Esferas decorativas de luz de fundo */
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::before {
+  background: #4f46e5;
+  top: 15%;
+  left: 20%;
+}
+
+body::after {
+  background: #06b6d4;
+  bottom: 15%;
+  right: 20%;
+}
+
+/* ==========================================================================
+   2. CONTAINER PRINCIPAL (WRAPPER)
+   ========================================================================== */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   3. TÍTULO DE ALTO IMPACTO
+   ========================================================================== */
+#Titulo {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 1.75rem;
+  
+  /* Texto com gradiente metálico/neon */
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Sombra de texto brilhante */
+  filter: drop-shadow(0 4px 20px rgba(99, 102, 241, 0.4));
+  animation: floatTitle 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatTitle {
+  0% {
+    transform: translateY(0);
+    filter: drop-shadow(0 4px 20px rgba(99, 102, 241, 0.4));
+  }
+  100% {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 8px 25px rgba(56, 189, 248, 0.6));
+  }
+}
+
+/* ==========================================================================
+   4. FORMULÁRIO GLASSMORPHISM
+   ========================================================================== */
+#formulario {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#formulario:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6),
+              0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+/* ==========================================================================
+   5. RÓTULOS E CAMPOS DE ENTRADA (INPUTS)
+   ========================================================================== */
+#formulario > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+#formulario > div:focus-within label {
+  color: #38bdf8;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="text"]::placeholder {
+  color: #475569;
+}
+
+input[type="text"]:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(15, 23, 42, 0.8);
+}
+
+input[type="text"]:focus {
+  background-color: rgba(15, 23, 42, 0.95);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--focus-glow),
+              0 0 15px rgba(99, 102, 241, 0.2);
+  transform: scale(1.01);
+}
+
+/* Exibição do CEP abaixo do input */
+#formulario p {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  margin-top: 0.3rem;
+}
+
+/* ==========================================================================
+   6. BOTÃO DE AÇÃO PRINCIPAL
+   ========================================================================== */
+#btn-limpar,
+.btn {
+  position: relative;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.95rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 0.75rem;
+  width: 100%;
+  box-shadow: 0 10px 20px -5px var(--primary-glow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeito de brilho que passa pelo botão ao passar o mouse */
+#btn-limpar::before,
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+#btn-limpar:hover::before,
+.btn:hover::before {
+  left: 100%;
+}
+
+#btn-limpar:hover,
+.btn:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+  transform: translateY(-2px);
+}
+
+#btn-limpar:active,
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px -3px rgba(99, 102, 241, 0.4);
+}
